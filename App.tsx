@@ -1,12 +1,13 @@
-import { Text, View } from 'react-native'
-import React from 'react'
+import React from 'react';
+import MainStackNavigation from './src/Navigation/MainStackNavigation';
+import {NativeBaseProvider} from 'native-base';
 
 const App: React.FC = () => {
   return (
-    <View>
-      <Text>Hello, TypeScript!</Text>
-    </View>
-  )
-}
+    <NativeBaseProvider>
+      <MainStackNavigation />
+    </NativeBaseProvider>
+  );
+};
 
-export default App
+export default App;
