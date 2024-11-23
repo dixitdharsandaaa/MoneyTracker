@@ -10,6 +10,8 @@ interface RNTextInputProps {
   value?: string;
   onChangeText?: (text: string) => void;
   multiline?: boolean;
+  keyboardType?: any;
+  maxLength?: number;
 }
 
 const RNTextInput: React.FC<RNTextInputProps> = ({
@@ -17,6 +19,8 @@ const RNTextInput: React.FC<RNTextInputProps> = ({
   value,
   onChangeText,
   multiline = false,
+  keyboardType = 'default',
+  maxLength,
 }) => {
   const [textInputFocus, setTextInputFocus] = useState<boolean>(false);
   return (
@@ -42,6 +46,8 @@ const RNTextInput: React.FC<RNTextInputProps> = ({
         multiline={multiline}
         numberOfLines={multiline ? 5 : 1}
         textAlignVertical={multiline ? 'top' : 'center'}
+        keyboardType={keyboardType}
+        maxLength={maxLength}
       />
     </View>
   );

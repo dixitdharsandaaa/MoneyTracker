@@ -9,15 +9,45 @@ import {constantString} from '../../Constants/constantString';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors, sizes} from '../../Constants/theme';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {
+  createExpenseAndCategoryTable,
+  defaultCategory,
+} from '../../Sqlite/SqliteService';
 
 const SplashScreen: React.FC = () => {
   useFocusEffect(
     useCallback(() => {
-      setTimeout(() => {
-        navigate(routes.MAIN_TAB_NAVIGATION);
-      }, 2000);
+      createTable();
     }, []),
   );
+
+  const createTable = () => {
+    createExpenseAndCategoryTable()
+      .then(response => {
+        if (response) {
+          console.log(response);
+          addDefaultCategory();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const addDefaultCategory = () => {
+    defaultCategory()
+      .then(response => {
+        if (response) {
+          console.log(response);
+          setTimeout(() => {
+            navigate(routes.MAIN_TAB_NAVIGATION);
+          }, 2000);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return (
     <RNContainer>
       <LinearGradient

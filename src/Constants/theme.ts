@@ -13,6 +13,7 @@ export const colors = {
   white: '#FFFFFF',
   light_white: '#F2F1F6',
   gray:'#C0C0C0',
+  gray_light:'#E5E5E5',
   transparent:"transparent"
 };
 
