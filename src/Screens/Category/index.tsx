@@ -1,9 +1,7 @@
 import React from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import {constantString} from '../../Constants/constantString';
-import PlusIcon from '../../Components/PlusIcon';
 import RNHeader from '../../Components/RNHeader';
-import {navigate} from '../../Navigation/NavigationServices';
 import {routes} from '../../Constants/routes';
 import {colors} from '../../Constants/theme';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
@@ -35,7 +33,6 @@ const Category: React.FC = () => {
           component={ExpenseCategory}
         />
       </Tab.Navigator>
-      <PlusIcon onPress={() => navigate(routes.ADD_UPDATE_CATEGORY)} />
     </RNContainer>
   );
 };

@@ -18,7 +18,6 @@ const SplashScreen: React.FC = () => {
       }, 2000);
     }, []),
   );
-
   return (
     <RNContainer>
       <LinearGradient
