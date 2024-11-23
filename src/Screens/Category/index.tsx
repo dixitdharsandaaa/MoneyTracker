@@ -27,10 +27,15 @@ const Category: React.FC = () => {
           },
           // tabBarPressColor: colors.secondary, // Change the ripple color on tab press
         }}>
-        <Tab.Screen name={routes.INCOME_CATEGORY} component={IncomeCategory} />
         <Tab.Screen
           name={routes.EXPENSE_CATEGORY}
           component={ExpenseCategory}
+          initialParams={{disabled: true}}
+        />
+        <Tab.Screen
+          name={routes.INCOME_CATEGORY}
+          component={IncomeCategory}
+          initialParams={{disabled: true}}
         />
       </Tab.Navigator>
     </RNContainer>
