@@ -10,6 +10,8 @@ interface TextProps {
   mb?: number;
   ml?: number;
   mr?: number;
+  flex?: number;
+  textAlign?: string;
 }
 
 const RNText: React.FC<TextProps> = ({
@@ -21,6 +23,8 @@ const RNText: React.FC<TextProps> = ({
   mb,
   ml,
   mr,
+  flex,
+  textAlign,
 }) => {
   return (
     <Text
@@ -30,7 +34,9 @@ const RNText: React.FC<TextProps> = ({
       mt={mt}
       mb={mb}
       ml={ml}
-      mr={mr}>
+      mr={mr}
+      flex={flex}
+      textAlign={textAlign}>
       {text}
     </Text>
   );
