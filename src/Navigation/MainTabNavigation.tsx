@@ -21,7 +21,7 @@ const MainTabNavigation: React.FC = () => {
             iconName = 'home-outline';
           } else if (route?.name == routes.GRAPH) {
             iconName = 'pie-chart-outline';
-          } else if (route?.name == routes.TREANSACTIONS) {
+          } else if (route?.name == routes.TRANSACTIONS) {
             iconName = 'swap-horizontal-outline';
           } else if (route?.name == routes.CATEGORY) {
             iconName = 'list';
@@ -31,17 +31,17 @@ const MainTabNavigation: React.FC = () => {
           return (
             <Ionicons
               name={iconName}
-              color={focused ? colors.secondary : colors.black}
+              color={focused ? colors.primary : colors.black}
               size={sizes.f20}
             />
           );
         },
         tabBarInactiveTintColor: colors.black,
-        tabBarActiveTintColor: colors.secondary,
+        tabBarActiveTintColor: colors.primary,
       })}>
       <Tab.Screen name={routes.HOME} component={Home} />
       <Tab.Screen name={routes.GRAPH} component={Graph} />
-      <Tab.Screen name={routes.TREANSACTIONS} component={Transactions} />
+      <Tab.Screen name={routes.TRANSACTIONS} component={Transactions} />
       <Tab.Screen name={routes.CATEGORY} component={Category} />
       <Tab.Screen name={routes.SETTINGS} component={Settings} />
     </Tab.Navigator>

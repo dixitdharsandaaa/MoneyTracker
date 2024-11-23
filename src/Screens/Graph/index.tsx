@@ -1,4 +1,4 @@
-import React, {act, useState} from 'react';
+import React, {useState} from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import {FlatList, View} from 'native-base';
 import RNText from '../../Components/RNText';
@@ -62,9 +62,7 @@ const Graph: React.FC = () => {
           showsHorizontalScrollIndicator={false}
         />
       </View>
-      <View flex={1} justifyContent={'center'} alignItems={'center'}>
-        <RNText text={constantString.GRAPH} />
-      </View>
+      <View flex={1}></View>
     </RNContainer>
   );
 };
