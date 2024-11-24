@@ -1,13 +1,20 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import {View, VStack} from 'native-base';
 import {constantString} from '../../Constants/constantString';
 import RNHeader from '../../Components/RNHeader';
 import TouchableButton from '../../Components/TouchableButton';
 import RNModal from '../../Components/RNModal';
+import {navigate} from '../../Navigation/NavigationServices';
+import {routes} from '../../Constants/routes';
 
 const Settings: React.FC = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const handleCloseDeleteModal = useCallback(() => {
+    setShowDeleteModal(false);
+  }, []);
+
   return (
     <RNContainer>
       <RNHeader showText={true} value={constantString.SETTINGS} />
@@ -16,12 +23,12 @@ const Settings: React.FC = () => {
           <TouchableButton
             iconName={'user-alt'}
             name={constantString.PROFILE}
-            onPress={() => {}}
+            onPress={() => navigate(routes.PROFILE)}
           />
           <TouchableButton
             iconName={'palette'}
             name={constantString.THEME}
-            onPress={() => {}}
+            onPress={() => navigate(routes.THEME)}
           />
           <TouchableButton
             iconName={'file-export'}
@@ -59,7 +66,7 @@ const Settings: React.FC = () => {
         {showDeleteModal && (
           <RNModal
             isOpen={showDeleteModal}
-            onClose={() => setShowDeleteModal(false)}
+            onClose={handleCloseDeleteModal}
             message={'Are you sure you want to delete this data?'}
           />
         )}
