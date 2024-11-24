@@ -1,5 +1,5 @@
 import {Dimensions} from 'react-native';
-import { scale } from 'react-native-size-matters';
+import { moderateScale, scale } from 'react-native-size-matters';
 
 // Destructure and assign the width and height
 const {width, height} = Dimensions.get('screen');
@@ -14,7 +14,8 @@ export const colors = {
   light_white: '#F2F1F6',
   gray:'#C0C0C0',
   gray_light:'#E5E5E5',
-  transparent:"transparent"
+  transparent:"transparent",
+  black_opacity:'rgba(0, 0, 0, 0.5)'
 };
 
 export const sizes= {
@@ -37,3 +38,9 @@ export const fonts = {
   medium: '',
   bold: '',
 };
+
+export const buttonStyle = {
+  width60:{
+    width: moderateScale(60),
+  }
+}

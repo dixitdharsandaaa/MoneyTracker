@@ -1,45 +1,54 @@
 import React from 'react';
 import RNText from '../RNText';
-import {colors, fonts, sizes} from '../../Constants/theme';
-import {AlertDialog, HStack, Modal} from 'native-base';
+import {buttonStyle, colors, fonts, sizes} from '../../Constants/theme';
+import {HStack, View} from 'native-base';
 import RNButton from '../RNButton';
 import {constantString} from '../../Constants/constantString';
+import {Modal} from 'react-native';
 
 interface RNModalProps {
+  isOpen?: boolean;
   message?: string;
-  isOpen?: () => void;
   onClose?: () => void;
 }
 
 const RNModal: React.FC<RNModalProps> = ({isOpen, onClose, message}) => {
   return (
-    <AlertDialog isOpen={isOpen} onClose={onClose} size={'lg'}>
-      <AlertDialog.Content>
-        <AlertDialog.Body>
+    <Modal
+      transparent={true}
+      visible={isOpen}
+      onRequestClose={onClose}
+      animationType="slide">
+      <View
+        flex={1}
+        justifyContent={'center'}
+        backgroundColor={colors.black_opacity}
+        px={8}>
+        <View backgroundColor={colors.white} py={4} px={4} borderRadius={6}>
           <RNText
             text={message || ''}
             color={colors.black}
             fontSize={sizes.f12}
             fontFamily={fonts.medium}
           />
-        </AlertDialog.Body>
-        <AlertDialog.Footer borderTopWidth={0} pt={0}>
-          <HStack flex={0.5} alignItems={'center'} space={2}>
+          <HStack mt={2} justifyContent={'flex-end'} space={2}>
             <RNButton
               name={constantString.CLOSE}
               removeBackgroundColor={true}
               onPress={onClose}
+              style={buttonStyle.width60}
             />
             <RNButton
               name={constantString.DELETE}
               removeBackgroundColor={true}
               onPress={onClose}
+              style={buttonStyle.width60}
             />
           </HStack>
-        </AlertDialog.Footer>
-      </AlertDialog.Content>
-    </AlertDialog>
+        </View>
+      </View>
+    </Modal>
   );
 };
 
-export default RNModal;
+export default React.memo(RNModal);

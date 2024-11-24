@@ -5,22 +5,25 @@ import TouchableIcon from '../TouchableIcon';
 
 interface CalendarIconProps {
   onPress?: () => void;
-  primaryColor?: boolean;
+  color?: string;
+  disabled?: boolean;
 }
 
 const CalendarIcon: React.FC<CalendarIconProps> = ({
   onPress,
-  primaryColor = false,
+  color,
+  disabled = false,
 }) => {
   return (
     <TouchableIcon
       name="calendar-outline"
-      color={primaryColor ? colors.primary : colors.white}
+      color={color}
       size={sizes.f18}
       onPress={onPress}
       as={Ionicons}
+      disabled={disabled}
     />
   );
 };
 
-export default CalendarIcon;
+export default React.memo(CalendarIcon);

@@ -1,6 +1,5 @@
-import React, {useCallback} from 'react';
-import {useFocusEffect} from '@react-navigation/native';
-import {navigate} from '../../Navigation/NavigationServices';
+import React, {useCallback, useLayoutEffect} from 'react';
+import {resetNavigationStack} from '../../Navigation/NavigationServices';
 import {routes} from '../../Constants/routes';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import {View} from 'native-base';
@@ -15,7 +14,7 @@ import {
 } from '../../Sqlite/SqliteService';
 
 const SplashScreen: React.FC = () => {
-  useFocusEffect(
+  useLayoutEffect(
     useCallback(() => {
       createTable();
     }, []),
@@ -40,7 +39,7 @@ const SplashScreen: React.FC = () => {
         if (response) {
           console.log(response);
           setTimeout(() => {
-            navigate(routes.MAIN_TAB_NAVIGATION);
+            resetNavigationStack(routes.MAIN_TAB_NAVIGATION);
           }, 2000);
         }
       })

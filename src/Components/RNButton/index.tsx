@@ -10,6 +10,7 @@ interface RNButtonProps {
   onPress?: () => void;
   showBorder?: boolean;
   removeBackgroundColor?: boolean;
+  style?: object;
 }
 
 const RNButton: React.FC<RNButtonProps> = ({
@@ -17,9 +18,10 @@ const RNButton: React.FC<RNButtonProps> = ({
   onPress,
   showBorder = false,
   removeBackgroundColor = false,
+  style,
 }) => {
   return (
-    <View style={styles.btn}>
+    <TouchableOpacity onPress={onPress}>
       <LinearGradient
         start={{x: 0, y: 0}}
         end={{x: 1, y: 0}}
@@ -35,26 +37,26 @@ const RNButton: React.FC<RNButtonProps> = ({
             ? colors.transparent
             : colors.primary,
         ]}
-        style={styles.linearGradientStyle}>
-        <TouchableOpacity
-          onPress={onPress}
-          style={showBorder ? styles.btnBorderStyle : styles.btnStyle}>
-          <RNText
-            text={name}
-            color={
-              showBorder
-                ? colors.primary
-                : removeBackgroundColor
-                ? colors.primary
-                : colors.white
-            }
-            fontSize={sizes.f13}
-            fontFamily={fonts.medium}
-          />
-        </TouchableOpacity>
+        style={[
+          styles.linearGradientStyle,
+          showBorder && styles.btnBorderStyle,
+          style,
+        ]}>
+        <RNText
+          text={name}
+          color={
+            showBorder
+              ? colors.primary
+              : removeBackgroundColor
+              ? colors.primary
+              : colors.white
+          }
+          fontSize={sizes.f13}
+          fontFamily={fonts.medium}
+        />
       </LinearGradient>
-    </View>
+    </TouchableOpacity>
   );
 };
 
-export default RNButton;
+export default React.memo(RNButton);

@@ -2,7 +2,7 @@ import {Text} from 'native-base';
 import React from 'react';
 
 interface TextProps {
-  text?: string;
+  text?: any;
   fontSize?: number;
   color?: string;
   fontFamily?: string;
@@ -11,7 +11,7 @@ interface TextProps {
   ml?: number;
   mr?: number;
   flex?: number;
-  textAlign?: string;
+  textAlign?: any;
 }
 
 const RNText: React.FC<TextProps> = ({
@@ -42,4 +42,4 @@ const RNText: React.FC<TextProps> = ({
   );
 };
 
-export default RNText;
+export default React.memo(RNText);

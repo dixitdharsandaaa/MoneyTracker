@@ -1,65 +1,117 @@
-import {HStack, Modal} from 'native-base';
-import React from 'react';
-import DateTimePicker from 'react-native-ui-datepicker';
-import {colors} from '../../Constants/theme';
+import {Modal} from 'react-native';
+import {buttonStyle, colors, sizes} from '../../Constants/theme';
+import {HStack, View} from 'native-base';
+import React, {useCallback, useEffect, useState} from 'react';
+import {Calendar} from 'react-native-calendars';
 import RNButton from '../RNButton';
 import {constantString} from '../../Constants/constantString';
+import LeftArrowIcon from '../LeftArrowIcon';
+import RightArrowIcon from '../RightArrowIcon';
+import {
+  appDisplayFormateDate,
+  currentDate,
+  dbFormateDate,
+} from '../../Constants/utils';
 
 interface RNDatePickerModalProps {
   isOpen?: boolean;
   onClose?: () => void;
-  date?: string;
-  onChange?: (date: object) => void;
+  value?: string;
+  onConfirm?: (date: any | undefined) => void;
 }
 
 const RNDatePickerModal: React.FC<RNDatePickerModalProps> = ({
   isOpen,
   onClose,
-  date,
-  onChange,
+  value,
+  onConfirm,
 }) => {
+  const [selected, setSelected] = useState('');
+
+  useEffect(() => {
+    if (value) {
+      setSelected(appDisplayFormateDate(value));
+    }
+  }, [value]);
+
+  const handleDayPress = useCallback((day: any) => {
+    setSelected(day.dateString);
+  }, []);
+
+  const handleConfirm = useCallback(() => {
+    const date = selected ? dbFormateDate(selected) : currentDate;
+    onConfirm?.(date);
+  }, [selected, onConfirm]);
+
+  const handleClose = useCallback(() => {
+    onClose?.();
+  }, [onClose]);
+
+  const MemoizedCalendar = React.memo(() => (
+    <Calendar
+      style={{borderRadius: 6}}
+      theme={{
+        calendarBackground: colors.white,
+        textSectionTitleColor: colors.primary,
+        selectedDayBackgroundColor: colors.primary,
+        selectedDayTextColor: colors.white,
+        todayTextColor: colors.primary,
+        dayTextColor: colors.black,
+        textDisabledColor: colors.gray,
+        textDayFontSize: sizes.f13,
+        textMonthFontSize: sizes.f13,
+        // textDayHeaderFontSize: sizes.f12,
+      }}
+      // hideExtraDays={true}
+      renderArrow={(direction: string) =>
+        direction == 'left' ? <LeftArrowIcon /> : <RightArrowIcon />
+      }
+      scrollEnabled={false}
+      onDayPress={handleDayPress}
+      markedDates={{
+        [selected]: {
+          selected: true,
+          disableTouchEvent: true,
+          // selectedDotColor: 'red',
+          selectedColor: colors.primary,
+        },
+      }}
+      current={selected}
+      // markingType={'simple'} // You can use 'simple', 'multi-dot', or 'period'
+    />
+  ));
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={'lg'}>
-      <Modal.Content px={4} py={4}>
-        <DateTimePicker
-          mode="single"
-          date={date}
-          onChange={onChange}
-          displayFullDays={true}
-          initialView={'day'}
-          timePicker={false}
-          calendarTextStyle={{
-            color: colors.black,
-          }}
-          selectedTextStyle={{
-            color: colors.white,
-          }}
-          selectedItemColor={colors.primary}
-          headerTextStyle={{color: colors.black}}
-          headerButtonColor={colors.primary}
-          dayContainerStyle={{}}
-          monthContainerStyle={{}}
-          yearContainerStyle={{}}
-          weekDaysContainerStyle={{}}
-          weekDaysTextStyle={{color: colors.secondary}}
-        />
-        <Modal.Footer borderTopWidth={0} px={0} py={0}>
-          <HStack alignItems={'center'} flex={1} space={2}>
+    <Modal
+      transparent={true}
+      visible={isOpen}
+      onRequestClose={handleClose}
+      animationType="slide">
+      <View
+        flex={1}
+        justifyContent={'center'}
+        backgroundColor={colors.black_opacity}
+        px={7}>
+        <View borderRadius={6} backgroundColor={colors.white}>
+          <MemoizedCalendar />
+          <HStack justifyContent={'flex-end'} pb={2} space={2} pr={4}>
             <RNButton
-              removeBackgroundColor={true}
               name={constantString.CLOSE}
-              onPress={onClose}
+              removeBackgroundColor={true}
+              style={buttonStyle.width60}
+              onPress={handleClose}
             />
             <RNButton
               name={constantString.CONFIRM}
               removeBackgroundColor={true}
-              onPress={onClose}
+              style={buttonStyle.width60}
+              onPress={handleConfirm}
             />
           </HStack>
-        </Modal.Footer>
-      </Modal.Content>
+        </View>
+      </View>
     </Modal>
   );
 };
 
-export default RNDatePickerModal;
+export default React.memo(RNDatePickerModal);

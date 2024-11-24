@@ -15,7 +15,7 @@ const CommomCategoryItem: React.FC<CommomCategoryItemProps> = ({item}) => {
       <View
         width={moderateScale(45)}
         height={moderateScale(45)}
-        backgroundColor={colors.gray}
+        backgroundColor={colors.gray_light}
         borderRadius={100}
         justifyContent={'center'}
         alignItems={'center'}>

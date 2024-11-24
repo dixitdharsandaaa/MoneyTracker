@@ -8,19 +8,12 @@ export const styles = StyleSheet.create({
   },
   linearGradientStyle: {
     borderRadius: 6,
-  },
-  btnStyle: {
     paddingVertical: moderateScale(10),
     alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 6,
   },
   btnBorderStyle: {
     borderWidth: 1,
     borderColor: colors.primary,
-    paddingVertical: moderateScale(9),
-    alignItems: 'center',
-    justifyContent: 'center',
     borderRadius: 6,
   },
 });

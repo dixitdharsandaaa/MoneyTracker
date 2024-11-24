@@ -40,7 +40,7 @@ const RNHeader: React.FC<HeaderProps> = ({
             mt={2}
           />
         )}
-        {showCalender && <CalendarIcon />}
+        {showCalender && <CalendarIcon color={colors.white} />}
       </HStack>
     </LinearGradient>
   );

@@ -1,11 +1,10 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useLayoutEffect, useState} from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import {FlatList, View} from 'native-base';
 import {getCategory} from '../../Sqlite/SqliteService';
 import {staticString} from '../../Constants/staticString';
 import CommomCategoryItem from '../../Components/CommomCategoryItem';
 import {moderateScale} from 'react-native-size-matters';
-import {useFocusEffect} from '@react-navigation/native';
 
 interface Category {
   id: number;
@@ -16,7 +15,7 @@ interface Category {
 const IncomeCategory: React.FC = () => {
   const [category, setCategory] = useState<Category[]>([]);
 
-  useFocusEffect(
+  useLayoutEffect(
     useCallback(() => {
       getIcomeCategory();
     }, []),

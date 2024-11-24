@@ -5,10 +5,11 @@ import {Icon} from 'native-base';
 
 interface TouchableIconProps {
   onPress?: () => void;
-  as?: string;
+  as?: any;
   name?: string;
   color?: string;
   size?: number;
+  disabled?: boolean;
 }
 const TouchableIcon: React.FC<TouchableIconProps> = ({
   onPress,
@@ -16,12 +17,16 @@ const TouchableIcon: React.FC<TouchableIconProps> = ({
   name,
   color,
   size,
+  disabled = false,
 }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.iconStyle}>
+    <TouchableOpacity
+      disabled={disabled}
+      onPress={onPress}
+      style={styles.iconStyle}>
       <Icon as={as} name={name} color={color} size={size} />
     </TouchableOpacity>
   );
 };
 
-export default TouchableIcon;
+export default React.memo(TouchableIcon);
