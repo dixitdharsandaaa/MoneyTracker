@@ -6,12 +6,13 @@ import {colors} from '../../Constants/theme';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import IncomeCategory from '../IncomeCategory';
 import ExpenseCategory from '../ExpenseCategory';
+import {constantString} from '../../Constants/constantString';
 
 const Category: React.FC = React.memo(() => {
   const Tab = createMaterialTopTabNavigator();
   return (
     <RNContainer>
-      <RNHeader />
+      <RNHeader name={constantString.CATEGORY} />
       <Tab.Navigator
         initialRouteName={routes.INCOME_CATEGORY}
         lazy={true}

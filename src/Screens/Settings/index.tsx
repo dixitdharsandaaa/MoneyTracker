@@ -17,7 +17,7 @@ const Settings: React.FC = React.memo(() => {
 
   return (
     <RNContainer>
-      <RNHeader />
+      <RNHeader name={constantString.SETTINGS} />
       <View flex={1} px={5}>
         <VStack space={2} mt={6}>
           <TouchableButton

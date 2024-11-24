@@ -53,7 +53,7 @@ const Graph: React.FC = React.memo(() => {
 
   return (
     <RNContainer>
-      <RNHeader />
+      <RNHeader name={constantString.GRAPH} />
       <View backgroundColor={colors.primary}>
         <FlatList
           data={monthArray}
