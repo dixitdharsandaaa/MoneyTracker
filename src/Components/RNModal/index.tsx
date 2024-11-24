@@ -12,43 +12,45 @@ interface RNModalProps {
   onClose?: () => void;
 }
 
-const RNModal: React.FC<RNModalProps> = ({isOpen, onClose, message}) => {
-  return (
-    <Modal
-      transparent={true}
-      visible={isOpen}
-      onRequestClose={onClose}
-      animationType="slide">
-      <View
-        flex={1}
-        justifyContent={'center'}
-        backgroundColor={colors.black_opacity}
-        px={8}>
-        <View backgroundColor={colors.white} py={4} px={4} borderRadius={6}>
-          <RNText
-            text={message || ''}
-            color={colors.black}
-            fontSize={sizes.f12}
-            fontFamily={fonts.medium}
-          />
-          <HStack mt={2} justifyContent={'flex-end'} space={2}>
-            <RNButton
-              name={constantString.CLOSE}
-              removeBackgroundColor={true}
-              onPress={onClose}
-              style={buttonStyle.width60}
+const RNModal: React.FC<RNModalProps> = React.memo(
+  ({isOpen, onClose, message}) => {
+    return (
+      <Modal
+        transparent={true}
+        visible={isOpen}
+        onRequestClose={onClose}
+        animationType="slide">
+        <View
+          flex={1}
+          justifyContent={'center'}
+          backgroundColor={colors.black_opacity}
+          px={8}>
+          <View backgroundColor={colors.white} py={4} px={4} borderRadius={6}>
+            <RNText
+              text={message || ''}
+              color={colors.black}
+              fontSize={sizes.f12}
+              fontFamily={fonts.medium}
             />
-            <RNButton
-              name={constantString.DELETE}
-              removeBackgroundColor={true}
-              onPress={onClose}
-              style={buttonStyle.width60}
-            />
-          </HStack>
+            <HStack mt={2} justifyContent={'flex-end'} space={2}>
+              <RNButton
+                name={constantString.CLOSE}
+                removeBackgroundColor={true}
+                onPress={onClose}
+                style={buttonStyle.width60}
+              />
+              <RNButton
+                name={constantString.DELETE}
+                removeBackgroundColor={true}
+                onPress={onClose}
+                style={buttonStyle.width60}
+              />
+            </HStack>
+          </View>
         </View>
-      </View>
-    </Modal>
-  );
-};
+      </Modal>
+    );
+  },
+);
 
-export default React.memo(RNModal);
+export default RNModal;

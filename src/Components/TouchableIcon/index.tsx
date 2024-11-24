@@ -11,22 +11,17 @@ interface TouchableIconProps {
   size?: number;
   disabled?: boolean;
 }
-const TouchableIcon: React.FC<TouchableIconProps> = ({
-  onPress,
-  as,
-  name,
-  color,
-  size,
-  disabled = false,
-}) => {
-  return (
-    <TouchableOpacity
-      disabled={disabled}
-      onPress={onPress}
-      style={styles.iconStyle}>
-      <Icon as={as} name={name} color={color} size={size} />
-    </TouchableOpacity>
-  );
-};
+const TouchableIcon: React.FC<TouchableIconProps> = React.memo(
+  ({onPress, as, name, color, size, disabled = false}) => {
+    return (
+      <TouchableOpacity
+        disabled={disabled}
+        onPress={onPress}
+        style={styles.iconStyle}>
+        <Icon as={as} name={name} color={color} size={size} />
+      </TouchableOpacity>
+    );
+  },
+);
 
-export default React.memo(TouchableIcon);
+export default TouchableIcon;

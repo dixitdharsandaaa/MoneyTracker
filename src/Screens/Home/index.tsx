@@ -2,14 +2,18 @@ import React from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import {View} from 'native-base';
 import RNHeader from '../../Components/RNHeader';
+import PlusIcon from '../../Components/PlusIcon';
+import {navigate} from '../../Navigation/NavigationServices';
+import {routes} from '../../Constants/routes';
 
-const Home: React.FC = () => {
+const Home: React.FC = React.memo(() => {
   return (
     <RNContainer>
       <RNHeader />
       <View flex={1}></View>
+      <PlusIcon onPress={() => navigate(routes.ADD_UPDATE_INCOME_EXPENSE)} />
     </RNContainer>
   );
-};
+});
 
-export default React.memo(Home);
+export default Home;

@@ -14,32 +14,23 @@ interface TextProps {
   textAlign?: any;
 }
 
-const RNText: React.FC<TextProps> = ({
-  text,
-  color,
-  fontSize,
-  fontFamily,
-  mt,
-  mb,
-  ml,
-  mr,
-  flex,
-  textAlign,
-}) => {
-  return (
-    <Text
-      color={color}
-      fontSize={fontSize}
-      fontFamily={fontFamily}
-      mt={mt}
-      mb={mb}
-      ml={ml}
-      mr={mr}
-      flex={flex}
-      textAlign={textAlign}>
-      {text}
-    </Text>
-  );
-};
+const RNText: React.FC<TextProps> = React.memo(
+  ({text, color, fontSize, fontFamily, mt, mb, ml, mr, flex, textAlign}) => {
+    return (
+      <Text
+        color={color}
+        fontSize={fontSize}
+        fontFamily={fontFamily}
+        mt={mt}
+        mb={mb}
+        ml={ml}
+        mr={mr}
+        flex={flex}
+        textAlign={textAlign}>
+        {text}
+      </Text>
+    );
+  },
+);
 
-export default React.memo(RNText);
+export default RNText;

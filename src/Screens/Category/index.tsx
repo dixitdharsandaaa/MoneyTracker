@@ -7,13 +7,14 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import IncomeCategory from '../IncomeCategory';
 import ExpenseCategory from '../ExpenseCategory';
 
-const Category: React.FC = () => {
+const Category: React.FC = React.memo(() => {
   const Tab = createMaterialTopTabNavigator();
   return (
     <RNContainer>
       <RNHeader />
       <Tab.Navigator
         initialRouteName={routes.INCOME_CATEGORY}
+        lazy={true}
         screenOptions={{
           tabBarStyle: {
             backgroundColor: colors.primary,
@@ -29,16 +30,10 @@ const Category: React.FC = () => {
         <Tab.Screen
           name={routes.EXPENSE_CATEGORY}
           component={ExpenseCategory}
-          initialParams={{disabled: true}}
         />
-        <Tab.Screen
-          name={routes.INCOME_CATEGORY}
-          component={IncomeCategory}
-          initialParams={{disabled: true}}
-        />
+        <Tab.Screen name={routes.INCOME_CATEGORY} component={IncomeCategory} />
       </Tab.Navigator>
     </RNContainer>
   );
-};
-
-export default React.memo(Category);
+});
+export default Category;

@@ -12,7 +12,7 @@ interface Category {
   icon_name: string;
 }
 
-const IncomeCategory: React.FC = () => {
+const IncomeCategory: React.FC = React.memo(() => {
   const [category, setCategory] = useState<Category[]>([]);
 
   useLayoutEffect(
@@ -36,9 +36,9 @@ const IncomeCategory: React.FC = () => {
       .finally(() => {});
   };
 
-  const RenderCategoryItem = React.memo(({item}: {item: any}) => {
-    return <CommomCategoryItem item={item} />;
-  });
+  const RenderCategoryItem = React.memo(({item}: {item: any}) => (
+    <CommomCategoryItem item={item} />
+  ));
 
   return (
     <RNContainer>
@@ -57,6 +57,6 @@ const IncomeCategory: React.FC = () => {
       </View>
     </RNContainer>
   );
-};
+});
 
-export default React.memo(IncomeCategory);
+export default IncomeCategory;

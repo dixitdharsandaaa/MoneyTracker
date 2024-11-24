@@ -9,21 +9,19 @@ interface CalendarIconProps {
   disabled?: boolean;
 }
 
-const CalendarIcon: React.FC<CalendarIconProps> = ({
-  onPress,
-  color,
-  disabled = false,
-}) => {
-  return (
-    <TouchableIcon
-      name="calendar-outline"
-      color={color}
-      size={sizes.f18}
-      onPress={onPress}
-      as={Ionicons}
-      disabled={disabled}
-    />
-  );
-};
+const CalendarIcon: React.FC<CalendarIconProps> = React.memo(
+  ({onPress, color, disabled = false}) => {
+    return (
+      <TouchableIcon
+        name="calendar-outline"
+        color={color}
+        size={sizes.f18}
+        onPress={onPress}
+        as={Ionicons}
+        disabled={disabled}
+      />
+    );
+  },
+);
 
-export default React.memo(CalendarIcon);
+export default CalendarIcon;

@@ -11,7 +11,7 @@ type Month = {
   name: string;
 };
 
-const Graph: React.FC = () => {
+const Graph: React.FC = React.memo(() => {
   const [activeMonthIndex, setActiveMonthIndex] = useState<Number>(0);
 
   const monthArray: Month[] = [
@@ -65,6 +65,6 @@ const Graph: React.FC = () => {
       <View flex={1}></View>
     </RNContainer>
   );
-};
+});
 
-export default React.memo(Graph);
+export default Graph;

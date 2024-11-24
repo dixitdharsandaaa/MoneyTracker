@@ -8,7 +8,7 @@ import RNSelectDate from '../../Components/RNSelectDate';
 import RNButton from '../../Components/RNButton';
 import {currentDate} from '../../Constants/utils';
 
-const AddUpdateIncomeExpense: React.FC = () => {
+const AddUpdateIncomeExpense: React.FC = React.memo(() => {
   const [amount, setAmount] = useState<string>('0');
   const [description, setDescription] = useState<string>('');
 
@@ -38,6 +38,6 @@ const AddUpdateIncomeExpense: React.FC = () => {
       </View>
     </RNContainer>
   );
-};
+});
 
-export default React.memo(AddUpdateIncomeExpense);
+export default AddUpdateIncomeExpense;

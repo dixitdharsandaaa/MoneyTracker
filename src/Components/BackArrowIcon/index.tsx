@@ -7,7 +7,7 @@ interface BackArrowProps {
   onPress?: () => void;
 }
 
-const BackArrowIcon: React.FC<BackArrowProps> = ({onPress}) => {
+const BackArrowIcon: React.FC<BackArrowProps> = React.memo(({onPress}) => {
   return (
     <TouchableIcon
       name="arrow-back-sharp"
@@ -17,6 +17,6 @@ const BackArrowIcon: React.FC<BackArrowProps> = ({onPress}) => {
       onPress={onPress}
     />
   );
-};
+});
 
-export default React.memo(BackArrowIcon);
+export default BackArrowIcon;

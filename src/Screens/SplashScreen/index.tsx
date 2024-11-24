@@ -13,7 +13,7 @@ import {
   defaultCategory,
 } from '../../Sqlite/SqliteService';
 
-const SplashScreen: React.FC = () => {
+const SplashScreen: React.FC = React.memo(() => {
   useLayoutEffect(
     useCallback(() => {
       createTable();
@@ -47,6 +47,7 @@ const SplashScreen: React.FC = () => {
         console.log(error);
       });
   };
+
   return (
     <RNContainer>
       <LinearGradient
@@ -67,6 +68,6 @@ const SplashScreen: React.FC = () => {
       </LinearGradient>
     </RNContainer>
   );
-};
+});
 
-export default React.memo(SplashScreen);
+export default SplashScreen;

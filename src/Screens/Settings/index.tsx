@@ -8,7 +8,7 @@ import RNModal from '../../Components/RNModal';
 import {navigate} from '../../Navigation/NavigationServices';
 import {routes} from '../../Constants/routes';
 
-const Settings: React.FC = () => {
+const Settings: React.FC = React.memo(() => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const handleCloseDeleteModal = useCallback(() => {
@@ -73,6 +73,6 @@ const Settings: React.FC = () => {
       </View>
     </RNContainer>
   );
-};
+});
 
-export default React.memo(Settings);
+export default Settings;

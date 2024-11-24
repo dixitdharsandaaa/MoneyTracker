@@ -14,41 +14,41 @@ interface TouchableButtonProps {
   mb?: number;
 }
 
-const TouchableButton: React.FC<TouchableButtonProps> = ({
-  name,
-  iconName,
-  onPress,
-  mt,
-  mb,
-}) => {
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <HStack
-        mt={mt}
-        mb={mb}
-        justifyContent={'space-between'}
-        borderRadius={6}
-        px={2}
-        py={3}
-        backgroundColor={colors.white}
-        alignItems={'center'}>
-        <HStack alignItems={'center'} space={3} px={2}>
-          <FontAwesome
-            name={iconName}
-            size={sizes.f16}
-            color={colors.primary}
-          />
-          <RNText
-            text={name}
-            color={colors.black}
-            fontFamily={fonts.medium}
-            fontSize={sizes.f13}
+const TouchableButton: React.FC<TouchableButtonProps> = React.memo(
+  ({name, iconName, onPress, mt, mb}) => {
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <HStack
+          mt={mt}
+          mb={mb}
+          justifyContent={'space-between'}
+          borderRadius={6}
+          px={2}
+          py={3}
+          backgroundColor={colors.white}
+          alignItems={'center'}>
+          <HStack alignItems={'center'} space={3} px={2}>
+            <FontAwesome
+              name={iconName}
+              size={sizes.f16}
+              color={colors.primary}
+            />
+            <RNText
+              text={name}
+              color={colors.black}
+              fontFamily={fonts.medium}
+              fontSize={sizes.f13}
+            />
+          </HStack>
+          <Icon
+            name={'arrow-forward-ios'}
+            size={sizes.f15}
+            color={colors.gray}
           />
         </HStack>
-        <Icon name={'arrow-forward-ios'} size={sizes.f15} color={colors.gray} />
-      </HStack>
-    </TouchableOpacity>
-  );
-};
+      </TouchableOpacity>
+    );
+  },
+);
 
-export default React.memo(TouchableButton);
+export default TouchableButton;
