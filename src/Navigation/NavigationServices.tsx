@@ -3,7 +3,7 @@ import {createNavigationContainerRef} from '@react-navigation/native';
 export const navigationRef = createNavigationContainerRef();
 
 // Navigate to a specific route with optional parameters
-export const navigate = (route: string, params?: object) => {
+export const navigate = (route: any, params?: any) => {
   if (navigationRef.isReady()) {
     navigationRef.navigate(route, params);
   }
@@ -17,7 +17,7 @@ export const goBack = () => {
 };
 
 // Reset the navigation stack to a new route and params
-export const resetNavigationStack = (route: string, params?: object) => {
+export const resetNavigationStack = (route: any, params?: any) => {
   if (navigationRef.isReady()) {
     navigationRef.reset({
       index: 0, // Set the first screen in the stack

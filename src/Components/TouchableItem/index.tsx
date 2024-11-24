@@ -48,4 +48,4 @@ const TouchableItem: React.FC<TouchableItemProps> = ({
   );
 };
 
-export default TouchableItem;
+export default React.memo(TouchableItem);

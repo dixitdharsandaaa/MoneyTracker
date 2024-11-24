@@ -32,4 +32,4 @@ const CommomCategoryItem: React.FC<CommomCategoryItemProps> = ({item}) => {
   );
 };
 
-export default CommomCategoryItem;
+export default React.memo(CommomCategoryItem);

@@ -51,4 +51,4 @@ const TouchableButton: React.FC<TouchableButtonProps> = ({
   );
 };
 
-export default TouchableButton;
+export default React.memo(TouchableButton);

@@ -17,7 +17,7 @@ const Settings: React.FC = () => {
 
   return (
     <RNContainer>
-      <RNHeader showText={true} value={constantString.SETTINGS} />
+      <RNHeader />
       <View flex={1} px={5}>
         <VStack space={2} mt={6}>
           <TouchableButton
@@ -75,4 +75,4 @@ const Settings: React.FC = () => {
   );
 };
 
-export default Settings;
+export default React.memo(Settings);

@@ -1,6 +1,5 @@
 import React from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
-import {constantString} from '../../Constants/constantString';
 import RNHeader from '../../Components/RNHeader';
 import {routes} from '../../Constants/routes';
 import {colors} from '../../Constants/theme';
@@ -12,7 +11,7 @@ const Category: React.FC = () => {
   const Tab = createMaterialTopTabNavigator();
   return (
     <RNContainer>
-      <RNHeader showText={true} value={constantString.CATEGORIES} />
+      <RNHeader />
       <Tab.Navigator
         initialRouteName={routes.INCOME_CATEGORY}
         screenOptions={{
@@ -42,4 +41,4 @@ const Category: React.FC = () => {
   );
 };
 
-export default Category;
+export default React.memo(Category);

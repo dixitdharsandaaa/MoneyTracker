@@ -19,4 +19,4 @@ const BackArrowIcon: React.FC<BackArrowProps> = ({onPress}) => {
   );
 };
 
-export default BackArrowIcon;
+export default React.memo(BackArrowIcon);

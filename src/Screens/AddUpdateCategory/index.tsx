@@ -12,4 +12,4 @@ const AddUpdateCategory: React.FC = () => {
   );
 };
 
-export default AddUpdateCategory;
+export default React.memo(AddUpdateCategory);

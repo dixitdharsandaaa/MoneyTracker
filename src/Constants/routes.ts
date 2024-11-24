@@ -9,5 +9,7 @@ export const routes = {
   ADD_UPDATE_CATEGORY:'AddUpdateCategory',
   ADD_UPDATE_INCOME_EXPENSE:'AddUpdateIncomeExpense',
   INCOME_CATEGORY:"Income",
-  EXPENSE_CATEGORY:"Expense"
+  EXPENSE_CATEGORY:"Expense",
+  PROFILE:'Profile',
+  THEME:'Theme',
 };

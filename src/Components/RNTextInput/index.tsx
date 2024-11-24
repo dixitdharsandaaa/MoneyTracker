@@ -53,4 +53,4 @@ const RNTextInput: React.FC<RNTextInputProps> = ({
   );
 };
 
-export default RNTextInput;
+export default React.memo(RNTextInput);

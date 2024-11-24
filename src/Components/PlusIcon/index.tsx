@@ -16,4 +16,4 @@ const PlusIcon: React.FC<PlusIconProps> = ({onPress}) => {
   );
 };
 
-export default PlusIcon;
+export default React.memo(PlusIcon);

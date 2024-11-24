@@ -59,4 +59,4 @@ const ExpenseCategory: React.FC = () => {
   );
 };
 
-export default ExpenseCategory;
+export default React.memo(ExpenseCategory);

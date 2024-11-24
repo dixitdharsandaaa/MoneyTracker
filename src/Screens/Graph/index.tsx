@@ -53,7 +53,7 @@ const Graph: React.FC = () => {
 
   return (
     <RNContainer>
-      <RNHeader showText={true} value={constantString.GRAPH} />
+      <RNHeader />
       <View backgroundColor={colors.primary}>
         <FlatList
           data={monthArray}
@@ -67,4 +67,4 @@ const Graph: React.FC = () => {
   );
 };
 
-export default Graph;
+export default React.memo(Graph);

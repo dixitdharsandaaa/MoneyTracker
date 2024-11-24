@@ -59,4 +59,4 @@ const IncomeCategory: React.FC = () => {
   );
 };
 
-export default IncomeCategory;
+export default React.memo(IncomeCategory);
