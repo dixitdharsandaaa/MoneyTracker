@@ -8,7 +8,7 @@ import {constantString} from '../../Constants/constantString';
 import LeftArrowIcon from '../LeftArrowIcon';
 import RightArrowIcon from '../RightArrowIcon';
 import {
-  appDisplayFormateDate,
+  appFormateDate,
   currentDate,
   dbFormateDate,
 } from '../../Constants/utils';
@@ -26,7 +26,7 @@ const RNDatePickerModal: React.FC<RNDatePickerModalProps> = React.memo(
 
     useEffect(() => {
       if (value) {
-        setSelected(appDisplayFormateDate(value));
+        setSelected(appFormateDate(value));
       }
     }, [value]);
 

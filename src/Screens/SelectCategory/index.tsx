@@ -1,19 +1,19 @@
 import React from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import RNHeader from '../../Components/RNHeader';
+import {constantString} from '../../Constants/constantString';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {routes} from '../../Constants/routes';
 import {colors} from '../../Constants/theme';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import IncomeCategory from '../IncomeCategory';
 import ExpenseCategory from '../ExpenseCategory';
-import {constantString} from '../../Constants/constantString';
+import IncomeCategory from '../IncomeCategory';
 import {staticString} from '../../Constants/staticString';
 
-const Category: React.FC = React.memo(() => {
+const SelectCategory: React.FC = React.memo(() => {
   const Tab = createMaterialTopTabNavigator();
   return (
     <RNContainer>
-      <RNHeader name={constantString.CATEGORY} />
+      <RNHeader showBackArrow={true} name={constantString.SELECT_CATEGORY} />
       <Tab.Navigator
         initialRouteName={routes.EXPENSE_CATEGORY}
         // lazy={true}
@@ -32,15 +32,16 @@ const Category: React.FC = React.memo(() => {
         <Tab.Screen
           name={routes.EXPENSE_CATEGORY}
           component={ExpenseCategory}
-          initialParams={{addCategory: true}}
+          initialParams={{addCategory: false}}
         />
         <Tab.Screen
           name={routes.INCOME_CATEGORY}
           component={IncomeCategory}
-          initialParams={{addCategory: true}}
+          initialParams={{addCategory: false}}
         />
       </Tab.Navigator>
     </RNContainer>
   );
 });
-export default Category;
+
+export default SelectCategory;

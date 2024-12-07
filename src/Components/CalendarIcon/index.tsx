@@ -1,27 +1,21 @@
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {colors, sizes} from '../../Constants/theme';
-import TouchableIcon from '../TouchableIcon';
+import {moderateScale} from 'react-native-size-matters';
+import {View} from 'native-base';
 
-interface CalendarIconProps {
-  onPress?: () => void;
-  color?: string;
-  disabled?: boolean;
-}
-
-const CalendarIcon: React.FC<CalendarIconProps> = React.memo(
-  ({onPress, color, disabled = false}) => {
-    return (
-      <TouchableIcon
-        name="calendar-outline"
-        color={color}
-        size={sizes.f18}
-        onPress={onPress}
-        as={Ionicons}
-        disabled={disabled}
-      />
-    );
-  },
-);
+const CalendarIcon: React.FC = React.memo(() => {
+  return (
+    <View
+      width={moderateScale(35)}
+      height={moderateScale(35)}
+      justifyContent={'center'}
+      alignItems={'center'}
+      backgroundColor={colors.gray_light}
+      borderRadius={100}>
+      <Icon name={'calendar-outline'} size={sizes.f15} color={colors.primary} />
+    </View>
+  );
+});
 
 export default CalendarIcon;

@@ -8,6 +8,8 @@ import MainTabNavigation from './MainTabNavigation';
 import AddUpdateIncomeExpense from '../Screens/AddUpdateIncomeExpense';
 import Theme from '../Screens/Theme';
 import Profile from '../Screens/Profile';
+import SelectCategory from '../Screens/SelectCategory';
+import AddUpdateCategory from '../Screens/AddUpdateCategory';
 
 const MainStackNavigation: React.FC = () => {
   const Stack = createNativeStackNavigator<any>();
@@ -22,11 +24,19 @@ const MainStackNavigation: React.FC = () => {
           component={MainTabNavigation}
         />
         <Stack.Screen
+          name={routes.ADD_UPDATE_CATEGORY}
+          component={AddUpdateCategory}
+        />
+        <Stack.Screen
           name={routes.ADD_UPDATE_INCOME_EXPENSE}
           component={AddUpdateIncomeExpense}
         />
         <Stack.Screen name={routes.PROFILE} component={Profile} />
         <Stack.Screen name={routes.THEME} component={Theme} />
+        <Stack.Screen
+          name={routes.SELECT_CATEGORY}
+          component={SelectCategory}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

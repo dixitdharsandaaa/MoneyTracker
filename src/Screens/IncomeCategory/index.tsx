@@ -1,10 +1,12 @@
-import React, {useCallback, useLayoutEffect, useState} from 'react';
+import React, {useLayoutEffect, useState} from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import {FlatList, View} from 'native-base';
 import {getCategory} from '../../Sqlite/SqliteService';
 import {staticString} from '../../Constants/staticString';
 import CommomCategoryItem from '../../Components/CommomCategoryItem';
 import {moderateScale} from 'react-native-size-matters';
+import {navigate} from '../../Navigation/NavigationServices';
+import {routes} from '../../Constants/routes';
 
 interface Category {
   id: number;
@@ -12,14 +14,17 @@ interface Category {
   icon_name: string;
 }
 
-const IncomeCategory: React.FC = React.memo(() => {
+interface IncomeCategoryProps {
+  route?: any;
+}
+
+const IncomeCategory: React.FC<IncomeCategoryProps> = React.memo(({route}) => {
+  const addCategory = route?.params?.addCategory;
   const [category, setCategory] = useState<Category[]>([]);
 
-  useLayoutEffect(
-    useCallback(() => {
-      getIcomeCategory();
-    }, []),
-  );
+  useLayoutEffect(() => {
+    getIcomeCategory();
+  }, []);
 
   const getIcomeCategory = () => {
     getCategory(staticString.INCOME)
@@ -37,7 +42,19 @@ const IncomeCategory: React.FC = React.memo(() => {
   };
 
   const RenderCategoryItem = React.memo(({item}: {item: any}) => (
-    <CommomCategoryItem item={item} />
+    <CommomCategoryItem
+      item={item}
+      onPress={() => {
+        if (addCategory) {
+          navigate(routes.ADD_UPDATE_CATEGORY, {item: item});
+        } else {
+          navigate(routes.ADD_UPDATE_INCOME_EXPENSE, {
+            category: item,
+            update: false,
+          });
+        }
+      }}
+    />
   ));
 
   return (

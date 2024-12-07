@@ -10,10 +10,12 @@ interface RNModalProps {
   isOpen?: boolean;
   message?: string;
   onClose?: () => void;
+  buttonName: string;
+  buttonOnPress: () => void;
 }
 
 const RNModal: React.FC<RNModalProps> = React.memo(
-  ({isOpen, onClose, message}) => {
+  ({isOpen, onClose, message, buttonName, buttonOnPress}) => {
     return (
       <Modal
         transparent={true}
@@ -40,9 +42,9 @@ const RNModal: React.FC<RNModalProps> = React.memo(
                 style={buttonStyle.width60}
               />
               <RNButton
-                name={constantString.DELETE}
+                name={buttonName}
                 removeBackgroundColor={true}
-                onPress={onClose}
+                onPress={buttonOnPress}
                 style={buttonStyle.width60}
               />
             </HStack>

@@ -15,8 +15,11 @@ export const colors = {
   gray:'#C0C0C0',
   gray_light:'#E5E5E5',
   transparent:"transparent",
-  black_opacity:'rgba(0, 0, 0, 0.5)'
+  black_opacity:'rgba(0, 0, 0, 0.5)',
+  red:'#FF0000',
+  green:'#008000'
 };
+
 
 export const sizes= {
   f5:scale(5),

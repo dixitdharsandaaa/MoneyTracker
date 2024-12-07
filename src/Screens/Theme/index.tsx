@@ -1,8 +1,8 @@
 import React from 'react';
 import RNContainer from '../../Components/RNContainer/RNContainer';
 import RNHeader from '../../Components/RNHeader';
-import {View} from 'native-base';
 import {constantString} from '../../Constants/constantString';
+import {View} from 'native-base';
 
 const Theme: React.FC = React.memo(() => {
   return (

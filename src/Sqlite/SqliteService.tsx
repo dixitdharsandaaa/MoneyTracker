@@ -7,9 +7,14 @@ import {
   CATEGORY_TABLE_QUERY,
   COUNT_CATEGORY,
   DATABASE_NAME,
+  DELETE_EXPENSE_ENTRY,
+  DELETE_INCOME_AND_EXPENSE,
   EXPENSE_TABLE_QUERY,
   GET_ALL_CATEGORY,
+  GET_INCOME_AND_EXPENSE,
   INSERT_DEFAULT_CATEGORY,
+  INSERT_INCOME_AND_EXPENSE,
+  UPDATE_INCOME_AND_EXPENSE,
 } from './SqliteQuery';
 
 export const db: SQLiteDatabase = SQLite.openDatabase(
@@ -118,6 +123,111 @@ export const getCategory = (
         },
         (error: string) => {
           reject(`Error fetching categories: ${error}`);
+        },
+      );
+    });
+  });
+};
+
+export const insertIncomeAndExpense = (payload: any): Promise<{}> => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx: SQLTransaction) => {
+      tx.executeSql(
+        INSERT_INCOME_AND_EXPENSE,
+        [
+          payload?.categoryId,
+          payload?.categoryIconName,
+          payload?.categoryName,
+          payload?.categoryType,
+          payload?.amount,
+          payload?.description,
+          payload?.date,
+        ],
+        result => {
+          resolve(result);
+        },
+        error => {
+          reject(error);
+        },
+      );
+    });
+  });
+};
+
+export const updateIncomeAndExpense = (payload: any): Promise<{}> => {
+  console.log(payload);
+  return new Promise((resolve, reject) => {
+    db.transaction((tx: SQLTransaction) => {
+      tx.executeSql(
+        UPDATE_INCOME_AND_EXPENSE,
+        [payload?.amount, payload?.description, payload?.date, payload?.id],
+        result => {
+          resolve(result);
+        },
+        error => {
+          reject(error);
+        },
+      );
+    });
+  });
+};
+
+export const deleteIncomeAndExpense = (id: any): Promise<{}> => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx: SQLTransaction) => {
+      tx.executeSql(
+        DELETE_INCOME_AND_EXPENSE,
+        [id],
+        result => {
+          resolve(result);
+        },
+        error => {
+          reject(error);
+        },
+      );
+    });
+  });
+};
+
+export const deleteExpense = (): Promise<{}> => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx: SQLTransaction) => {
+      tx.executeSql(
+        DELETE_EXPENSE_ENTRY,
+        [],
+        result => {
+          resolve(result);
+        },
+        error => {
+          reject(error);
+        },
+      );
+    });
+  });
+};
+
+export const getIncomeAndExpense = (): Promise<{
+  message: string;
+  data: any[];
+}> => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx: SQLTransaction) => {
+      tx.executeSql(
+        GET_INCOME_AND_EXPENSE,
+        [],
+        (_: any, result: any) => {
+          const data: any[] = [];
+          // Loop through the rows and add each row to the categories array
+          for (let i = 0; i < result.rows.length; i++) {
+            data.push(result.rows.item(i)); // Push the current row to the array
+          }
+          resolve({
+            message: '',
+            data: data, // Return categories under 'data'
+          });
+        },
+        (error: any) => {
+          console.log(error);
         },
       );
     });

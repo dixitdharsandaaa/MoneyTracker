@@ -38,5 +38,10 @@ export const constantString = {
   DELETE:'Delete',
   CONFIRM:'Confirm',
   DESCRIPTION:'Description',
-  PAYMENT_MODE:"Payment Mode"
+  SELECT_CATEGORY:"Select Category",
+  UPDATE:"Update",
+  DELETE_EXPENSE_ENTRY:"Are you sure you want to delete this expense entry?",
+  DELETE_EXPENSE_DATA:"Are you sure you want to delete this expense data?",
+  EXPORT_DATA_MESSAGE:"Are you sure you want to export this?",
+  EXPORT:"Export"
 };

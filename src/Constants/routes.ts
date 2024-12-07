@@ -12,4 +12,5 @@ export const routes = {
   EXPENSE_CATEGORY:"Expense",
   PROFILE:'Profile',
   THEME:'Theme',
+  SELECT_CATEGORY:"SelectCategory"
 };

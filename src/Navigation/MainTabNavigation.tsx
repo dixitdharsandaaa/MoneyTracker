@@ -38,6 +38,10 @@ const MainTabNavigation: React.FC = () => {
         },
         tabBarInactiveTintColor: colors.black,
         tabBarActiveTintColor: colors.primary,
+        tabBarStyle: {
+          height: 57,
+        },
+        tabBarItemStyle: {paddingTop: 3},
       })}>
       <Tab.Screen name={routes.HOME} component={Home} />
       <Tab.Screen name={routes.GRAPH} component={Graph} />

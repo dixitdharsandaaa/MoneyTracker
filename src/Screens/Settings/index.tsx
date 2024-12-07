@@ -7,13 +7,31 @@ import TouchableButton from '../../Components/TouchableButton';
 import RNModal from '../../Components/RNModal';
 import {navigate} from '../../Navigation/NavigationServices';
 import {routes} from '../../Constants/routes';
+import {deleteExpense} from '../../Sqlite/SqliteService';
 
 const Settings: React.FC = React.memo(() => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
 
   const handleCloseDeleteModal = useCallback(() => {
     setShowDeleteModal(false);
   }, []);
+
+  const handleCloseExportModal = useCallback(() => {
+    setShowExportModal(false);
+  }, []);
+
+  const clickExportButton = () => {
+    setShowExportModal(false);
+  };
+
+  const clickDeleteButton = () => {
+    setShowDeleteModal(false);
+    deleteExpense()
+      .then(response => {})
+      .catch(error => {})
+      .finally(() => {});
+  };
 
   return (
     <RNContainer>
@@ -34,7 +52,7 @@ const Settings: React.FC = React.memo(() => {
             iconName={'file-export'}
             name={constantString.EXPORT_DATA}
             mt={3}
-            onPress={() => {}}
+            onPress={() => setShowExportModal(true)}
           />
           <TouchableButton
             iconName={'trash-alt'}
@@ -67,7 +85,18 @@ const Settings: React.FC = React.memo(() => {
           <RNModal
             isOpen={showDeleteModal}
             onClose={handleCloseDeleteModal}
-            message={'Are you sure you want to delete this data?'}
+            message={constantString.DELETE_EXPENSE_DATA}
+            buttonName={constantString.DELETE}
+            buttonOnPress={clickDeleteButton}
+          />
+        )}
+        {showExportModal && (
+          <RNModal
+            isOpen={showExportModal}
+            onClose={handleCloseExportModal}
+            message={constantString.EXPORT_DATA_MESSAGE}
+            buttonName={constantString.EXPORT}
+            buttonOnPress={clickExportButton}
           />
         )}
       </View>

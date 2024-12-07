@@ -1,4 +1,4 @@
-import React, {useCallback, useLayoutEffect} from 'react';
+import React, {useLayoutEffect} from 'react';
 import {resetNavigationStack} from '../../Navigation/NavigationServices';
 import {routes} from '../../Constants/routes';
 import RNContainer from '../../Components/RNContainer/RNContainer';
@@ -14,17 +14,14 @@ import {
 } from '../../Sqlite/SqliteService';
 
 const SplashScreen: React.FC = React.memo(() => {
-  useLayoutEffect(
-    useCallback(() => {
-      createTable();
-    }, []),
-  );
+  useLayoutEffect(() => {
+    createTable();
+  }, []);
 
   const createTable = () => {
     createExpenseAndCategoryTable()
       .then(response => {
         if (response) {
-          console.log(response);
           addDefaultCategory();
         }
       })
@@ -37,7 +34,6 @@ const SplashScreen: React.FC = React.memo(() => {
     defaultCategory()
       .then(response => {
         if (response) {
-          console.log(response);
           setTimeout(() => {
             resetNavigationStack(routes.MAIN_TAB_NAVIGATION);
           }, 2000);
